@@ -1,0 +1,7 @@
+{
+  "name": "Republic Education",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
