@@ -62,7 +62,13 @@ export default defineComponent({
   },
   created(){
     //   console.log("Page created");
-    this.$http.get('/individual_exams/'+this.$route.params.typeId+'/'+this.$route.params.subjectId).then(response=>{
+    let link;
+    if(this.$route.params.typeId!=null){
+        link='/individual_exams/'+this.$route.params.typeId+'/'+this.$route.params.subjectId;
+    }else{
+        link='/individual_exams/'+this.$route.params.typeName;
+    }
+    this.$http.get(link).then(response=>{
         // console.log(response.data);
         this.exams=response.data;
       }).catch(function (error) {

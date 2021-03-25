@@ -53,6 +53,14 @@ const routes: Array<RouteRecordRaw> = [
       default:ExamList,
       'bottom-nav':BottomNav
     },
+  },
+  {
+    path: '/individual_exams/:typeName',
+    name: 'ExamListForTypeName',
+    components: {
+      default:ExamList,
+      'bottom-nav':BottomNav
+    },
   }
 ]
 

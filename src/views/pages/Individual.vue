@@ -72,8 +72,10 @@ export default defineComponent({
   },
   methods:{
       getLink(type: any){
-          if(type.id==7 || type.id==2){
-              return "/";
+          if(type.id==7){
+              return { name: 'ExamListForTypeName', params: { typeName: 'subject_final' } };
+          }else if(type.id==2){
+              return { name: 'ExamListForTypeName', params: { typeName: 'model_test' } }
           }
 
           return { name: 'Subjects', params: { typeId: type.id } };
