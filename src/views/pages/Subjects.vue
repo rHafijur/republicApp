@@ -16,8 +16,10 @@
         <div class="q-menu-box">
             <p>Repblic Education</p>
             <ul class="q-menu-list">
-                <menu-item :link="{name:'Individual'}" title="Individual Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
-                <!-- <menu-item :link="{}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
+                <template v-for="(subject,i) of subjects" :key="i">
+                    <menu-item :link="getLink(subject)" :title="subject.title" icon="assets/img/academic-exam-icon.png"></menu-item>
+                </template>
+                <!-- <menu-item title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
         </div>
         <div class="category-slider">
@@ -58,17 +60,36 @@
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
-import MenuItem from  './components/layouts/MenuItem.vue'
+import MenuItem from  '../components/layouts/MenuItem.vue'
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Individual',
+  data(){
+    return {
+      subjects:[],
+    }
+  },
+  methods:{
+      getLink(subject: any){
+          return {name:'ExamList', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
+      }
+  },
   components: {
     MenuItem,
     // IonHeader,
     // IonPage,
     // IonTitle,
     // IonToolbar
+  },
+  created(){
+    //   console.log("Page created");
+    this.$http.get('/individual_exam/type/'+this.$route.params.typeId).then(response=>{
+        // console.log(response.data);
+        this.subjects=response.data;
+      }).catch(function (error) {
+        console.log(error);
+      })
   }
 });
 </script>
