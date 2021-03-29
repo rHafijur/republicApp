@@ -5,6 +5,7 @@ import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router';
 import { IonicVue } from '@ionic/vue';
+import PrimeVue from 'primevue/config';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -24,15 +25,34 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 // import './theme/variables.css';
-axios.defaults.baseURL = 'http://localhost/modelTest/public/api';
+// axios.defaults.baseURL = 'http://localhost/modelTest/public/api';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 
-axios.defaults.headers.common['Authorization'] = "Bearer "+localStorage.token;
+// axios.defaults.headers.common['Authorization'] = "Bearer "+localStorage.token;
+axios.interceptors.request.use(
+  (config) => {
+    let token = localStorage.getItem('token');
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${ token }`;
+    }
+
+    return config;
+  },
+
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 const app = createApp(App)
 .use(IonicVue)
 .use(VueAxios,axios)
-.use(router);
-  
+.use(router)
+.use(PrimeVue);
+
+// app.config.globalProperties.$FullCalendar = FullCalendar;
+
 router.isReady().then(() => {
   app.mount('#app');
 });

@@ -14,7 +14,7 @@
         </div>
         <!-- /Header Area -->
         <div class="q-menu-box">
-            <p>Repblic Education</p>
+            <p>{{pageTitle}}</p>
             <ul class="q-menu-list">
                 <template v-for="(type,i) of types" :key="i">
                     <menu-item :link="getLink(type)" :title="type.title" icon="assets/img/academic-exam-icon.png"></menu-item>
@@ -68,6 +68,7 @@ export default defineComponent({
   data(){
     return {
       types:[],
+      pageTitle:'',
     }
   },
   methods:{
@@ -78,7 +79,7 @@ export default defineComponent({
               return { name: 'ExamListForTypeName', params: { typeName: 'model_test' } }
           }
 
-          return { name: 'Subjects', params: { typeId: type.id } };
+          return { name: 'Subjects', params: { typeId: type.id, examModel: this.$route.params.examModel} };
       }
   },
   components: {
@@ -89,7 +90,11 @@ export default defineComponent({
     // IonToolbar
   },
   created(){
-    //   console.log("Page created");
+    if(this.$route.params.examModel=='individual'){
+      this.pageTitle="Individual Exam";
+    }else if(this.$route.params.examModel=='group'){
+      this.pageTitle="Group Exam";
+    }
     this.$http.get('/individual_exam/types').then(response=>{
         // console.log(response.data);
         this.types=response.data;

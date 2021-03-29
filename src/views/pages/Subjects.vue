@@ -14,7 +14,7 @@
         </div>
         <!-- /Header Area -->
         <div class="q-menu-box">
-            <p>Repblic Education</p>
+            <p>{{pageTitle}}</p>
             <ul class="q-menu-list">
                 <template v-for="(subject,i) of subjects" :key="i">
                     <menu-item :link="getLink(subject)" :title="subject.title" icon="assets/img/academic-exam-icon.png"></menu-item>
@@ -68,11 +68,16 @@ export default defineComponent({
   data(){
     return {
       subjects:[],
+      pageTitle:'',
     }
   },
   methods:{
       getLink(subject: any){
-          return {name:'ExamList', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
+        if(this.$route.params.examModel=='individual'){
+            return {name:'ExamList', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
+        }else if(this.$route.params.examModel=='group'){
+          return {name:'ExamCalender', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
+        }
       }
   },
   components: {
@@ -83,8 +88,12 @@ export default defineComponent({
     // IonToolbar
   },
   created(){
-    //   console.log("Page created");
-    this.$http.get('/individual_exam/type/'+this.$route.params.typeId).then(response=>{
+    if(this.$route.params.examModel=='individual'){
+      this.pageTitle="Individual Exam";
+    }else if(this.$route.params.examModel=='group'){
+      this.pageTitle="Group Exam";
+    }
+    this.$http.get('/'+this.$route.params.examModel+'_exam/type/'+this.$route.params.typeId).then(response=>{
         // console.log(response.data);
         this.subjects=response.data;
       }).catch(function (error) {

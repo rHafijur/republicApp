@@ -16,7 +16,8 @@
         <div class="q-menu-box">
             <p>Repblic Education</p>
             <ul class="q-menu-list">
-                <menu-item :link="{name:'Individual'}" title="Individual Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <menu-item :link="{name:'Types',params:{examModel:'individual'}}" title="Individual Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <menu-item :link="{name:'Types',params:{examModel:'group'}}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
                 <!-- <menu-item :link="{}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
         </div>
