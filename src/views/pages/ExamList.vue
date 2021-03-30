@@ -1,6 +1,6 @@
 <template>
   <div class="quiz-app-wrapper">
-        
+
         <img src="assets/img/top-bg.png" alt="" class="app_header_top_bg">
         <!-- Header Area -->
         <div class="quiz-header">
@@ -34,7 +34,7 @@
                     </a>
                 </li>
             </ul>
-        </div> 
+        </div>
     </div>
 </template>
 

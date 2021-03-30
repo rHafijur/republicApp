@@ -69,7 +69,8 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       default:ExamList,
       'bottom-nav':BottomNav
-    },
+    }
+  },
   {
     path: '/group_exams/:typeName',
     name: 'ExamCalenderForTypeName',

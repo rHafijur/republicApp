@@ -73,12 +73,20 @@ export default defineComponent({
   },
   methods:{
       getLink(type: any){
-          if(type.id==7){
-              return { name: 'ExamListForTypeName', params: { typeName: 'subject_final' } };
-          }else if(type.id==2){
-              return { name: 'ExamListForTypeName', params: { typeName: 'model_test' } }
-          }
 
+          if(this.$route.params.examModel=='individual'){
+            if(type.id==7){
+                return { name: 'ExamListForTypeName', params: { typeName: 'subject_final' } };
+            }else if(type.id==2){
+                return { name: 'ExamListForTypeName', params: { typeName: 'model_test' } }
+            }
+          }else if(this.$route.params.examModel=='group'){
+            if(type.id==7){
+                return { name: 'ExamCalenderForTypeName', params: { typeName: 'subject_final' } };
+            }else if(type.id==2){
+                return { name: 'ExamCalenderForTypeName', params: { typeName: 'model_test' } }
+            }
+          }
           return { name: 'Subjects', params: { typeId: type.id, examModel: this.$route.params.examModel} };
       }
   },
