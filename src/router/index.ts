@@ -7,6 +7,8 @@ import Types from '../views/pages/Types.vue'
 import Subjects from '../views/pages/Subjects.vue'
 import ExamList from '../views/pages/ExamList.vue'
 import ExamCalender from '../views/pages/ExamCalender.vue'
+import GroupExamDetail from '../views/pages/GroupExamDetail.vue';
+import IndividualExamDetail from '../views/pages/IndividualExamDetail.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -76,6 +78,22 @@ const routes: Array<RouteRecordRaw> = [
     name: 'ExamCalenderForTypeName',
     components: {
       default:ExamCalender,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/group_exam/:id',
+    name: 'GroupExamDetail',
+    components: {
+      default:GroupExamDetail,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/individual_exam/:id',
+    name: 'IndividualExamDetail',
+    components: {
+      default:IndividualExamDetail,
       'bottom-nav':BottomNav
     },
   }

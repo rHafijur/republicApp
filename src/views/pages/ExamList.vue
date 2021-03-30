@@ -18,7 +18,7 @@
             <p class="text-center">Daily Exam</p>
             <ul class="model-test-list">
                 <li v-for="(exam,i) of exams" :key="i">
-                    <a href="#">
+                    <router-link :to="{ name: 'IndividualExamDetail', params: { id: exam.id } }">
                         <div class="mt-single">
                             <ul class="mt-list">
                                 <li>30%</li>
@@ -31,7 +31,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>

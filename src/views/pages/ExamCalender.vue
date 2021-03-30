@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz-app-wrapper">
+    <div class="quiz-app-wrapper">
 
         <img src="assets/img/top-bg.png" alt="" class="app_header_top_bg">
         <!-- Header Area -->
@@ -41,14 +41,13 @@ export default defineComponent({
       getLink(type: any){
           return "/";
       },
-      eventClicked(data: any){
-        console.log(data.event._def.publicId);
-        
+       eventClicked(data: any){
+        this.$router.push({name:'GroupExamDetail', params:{id:data.event._def.publicId}});
       }
   },
   components: {
     FullCalendar,
-    // IonPage,
+    // IonContent,
     // IonTitle,
     // IonToolbar
   },
@@ -79,7 +78,7 @@ export default defineComponent({
       const exams=[];
       for(const exam of response.data){
         exams.push({
-            id:exam.id,
+            id:exam.group_exam_id,
             title:exam.title,
             start:exam.starts_at
         })
