@@ -18,7 +18,7 @@
             <p class="text-center">Daily Exam</p>
             <ul class="model-test-list">
                 <li v-for="(exam,i) of exams" :key="i">
-                    <router-link :to="{ name: 'IndividualExamDetail', params: { id: exam.id } }">
+                    <router-link :to="getLink(exam.id)">
                         <div class="mt-single">
                             <ul class="mt-list">
                                 <li>30%</li>
@@ -50,8 +50,8 @@ export default defineComponent({
     }
   },
   methods:{
-      getLink(type: any){
-          return "/";
+      getLink(id: any){
+          return { name: 'IndividualExamDetail', params: { id: id } };
       }
   },
   components: {

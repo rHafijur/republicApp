@@ -19,7 +19,7 @@
             <div class="model-test-list">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-10 content">
-                    <div>
+                    <div v-if="!startPressed">
                         <div class="form-row">
                           <div class="form-group col-md-12">
                               <label for="title">Title</label>
@@ -80,12 +80,26 @@
                         <div class="form-row">
                           <div class="col-md-12">
                             <ion-button @click="enroll" v-if="!examInfo.hasEnroled" color="primary" expand="full">Enroll</ion-button>
-                            <ion-button v-if="examInfo.hasEnroled" color="success" expand="full">Enrolled</ion-button>
+                            <ion-button @click="start" v-if="examInfo.hasEnroled && examInfo.test==null" color="primary" expand="full">Start</ion-button>
+                            <ion-button @click="continueExam" v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished!=1" color="primary" expand="full">Continue</ion-button>
+                            <ion-button v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished==1" disabled color="primary" expand="full">Finished</ion-button>
+                            <ion-button v-if="examInfo.hasEnroled" disabled color="success" expand="full">Enrolled</ion-button>
                           </div>
                             
                         </div>
                         </div>
                 </div>
+                <div v-if="startPressed">
+                  <h5>The Exam Will be Started After:</h5>
+                  <div class="timer">{{timer}}</div>
+                  <ion-button @click="startPressed=false" color="secondary" expand="full">Return</ion-button>
+                </div>
+                <ion-loading
+                      :is-open="isLoading"
+                      cssClass="my-custom-class"
+                      message="Please wait..."
+                  >
+                </ion-loading>
             </div>
             </div>
         </div>
@@ -94,7 +108,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton } from '@ionic/vue';
+import { IonButton, IonLoading } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -104,14 +118,15 @@ export default defineComponent({
   data() {
     return {
       examInfo: {} as any,
+      timer: "" as string,
+      startPressed:false as boolean,
+      isLoading:false as boolean,
     }
   },
   created(){
       this.$http.get('group_exam/'+this.$route.params.id).then(response=>{
       this.examInfo=response.data;
       console.log(this.examInfo);
-      
-
       }).catch(function (error) {
         console.log(error);
       });
@@ -129,9 +144,52 @@ export default defineComponent({
       }).catch(function (error) {
         console.log(error);
       })
+    },
+    startExam(){
+      this.isLoading=true;
+      this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/start').then(response=>{
+        this.isLoading=false;
+        if(response.data.status!='success'){
+          console.log(response.data);
+        }else{
+          console.log(response.data);
+          this.$router.replace({name:'McqQuestionPaper',params:{id:response.data.test_id}});
+        }
+        
+      }).catch(error=>{
+        this.isLoading=false;
+        console.log(error);
+      })
+    },
+    continueExam(){
+      this.$router.replace({name:'McqQuestionPaper',params:{id:this.examInfo.test_id}});
+    },
+    start(){
+      this.startPressed=true;
+      let sec= (new Date(this.examInfo.starts_at).getTime()- new Date().getTime())/1000;
+      if(sec<0){
+        this.startExam();
+      }
+      if(this.timer==''){
+        const timer= setInterval(()=>{
+          if(sec <=0 ){
+            if(this.startPressed){
+              this.startExam();
+            }
+            clearInterval(timer); 
+          }
+          const day= Math.floor(sec / (3600 * 24));
+          const hour= Math.floor(sec / 3600);
+          const minute= Math.floor((sec % 3600) / 60);
+          const second= Math.floor((sec % 3600) % 60);
+          this.timer=day+"d "+hour+"h "+minute+'m '+second+"s";
+          sec--;
+          
+      },1000);
+      }
     }
   },
-  components: {IonButton}
+  components: {IonButton, IonLoading}
 });
 </script>
 
@@ -187,6 +245,9 @@ export default defineComponent({
       margin: 10px;
       margin-left: 0px;
   }
-  
+  .timer{
+    font-size: 40px;
+    padding: 30px 0 30px 0;
+  }
 
 </style>

@@ -7,13 +7,17 @@ import Types from '../views/pages/Types.vue'
 import Subjects from '../views/pages/Subjects.vue'
 import ExamList from '../views/pages/ExamList.vue'
 import ExamCalender from '../views/pages/ExamCalender.vue'
+import EnrolledExamCalendar from '../views/pages/EnrolledExamCalendar.vue'
 import GroupExamDetail from '../views/pages/GroupExamDetail.vue';
 import IndividualExamDetail from '../views/pages/IndividualExamDetail.vue';
+import McqQuestionPaper from '../views/pages/McqQuestionPaper.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: to =>{
+      console.log(to);
+      
       if(localStorage.token != null){
         return "/home";
       }
@@ -82,6 +86,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/group_exams/enrolled',
+    name: 'EnrolledExamCalendar',
+    components: {
+      default:EnrolledExamCalendar,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
     path: '/group_exam/:id',
     name: 'GroupExamDetail',
     components: {
@@ -96,6 +108,11 @@ const routes: Array<RouteRecordRaw> = [
       default:IndividualExamDetail,
       'bottom-nav':BottomNav
     },
+  },
+  {
+    path: '/mcq_question_paper/:id',
+    name: 'McqQuestionPaper',
+    component:McqQuestionPaper 
   }
 ]
 

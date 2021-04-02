@@ -75,7 +75,14 @@
                         <hr>
                         <div class="form-row">
                           <div class="col-md-12">
-                            <ion-button  color="primary" expand="full">Start Exam</ion-button>
+                              <ion-loading
+                                    :is-open="isLoading"
+                                    cssClass="my-custom-class"
+                                    message="Please wait..."
+                                    
+                                >
+                                </ion-loading>
+                            <ion-button @click="start" color="primary" expand="full">Start Exam</ion-button>
                           </div>
                             
                         </div>
@@ -89,7 +96,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton } from '@ionic/vue';
+import { IonButton, IonLoading } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -99,9 +106,12 @@ export default defineComponent({
   data() {
     return {
       examInfo: {} as any,
+      isLoading: false as boolean
     }
   },
   created(){
+    //   console.log(this.content);
+      
       this.$http.get('individual_exam/'+this.$route.params.id).then(response=>{
       this.examInfo=response.data;
       console.log(this.examInfo);
@@ -113,20 +123,23 @@ export default defineComponent({
   },
   methods:{
     start(){
-      this.$http.post('/group_exam/enroll',{
-        groupExamId:this.examInfo.group_exam_id
-      }).then(response=>{
+        this.isLoading=true;
+      this.$http.get('/individual_exam/'+this.examInfo.exam_id+'/start').then(response=>{
+        this.isLoading=false;
         if(response.data.charge_failed==true){
           console.log(response.data);
         }else{
-          this.examInfo.hasEnroled=true;
+          console.log(response.data);
+          this.$router.replace({name:'McqQuestionPaper',params:{id:response.data.test_id}});
         }
-      }).catch(function (error) {
+        
+      }).catch(error=>{
+        this.isLoading=false;
         console.log(error);
       })
     }
   },
-  components: {IonButton}
+  components: {IonButton, IonLoading}
 });
 </script>
 
