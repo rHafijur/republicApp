@@ -76,7 +76,7 @@ export default defineComponent({
         if(this.$route.params.examModel=='individual'){
             return {name:'ExamList', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
         }else if(this.$route.params.examModel=='group'){
-          return {name:'ExamCalender', params:{typeId:this.$route.params.typeId, subjectId:subject.id}};
+          return {name:'ExamCalender', params:{typeId:this.$route.params.typeId}};
         }
       }
   },

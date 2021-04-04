@@ -11,6 +11,8 @@ import EnrolledExamCalendar from '../views/pages/EnrolledExamCalendar.vue'
 import GroupExamDetail from '../views/pages/GroupExamDetail.vue';
 import IndividualExamDetail from '../views/pages/IndividualExamDetail.vue';
 import McqQuestionPaper from '../views/pages/McqQuestionPaper.vue';
+import ArchiveExamList from '../views/pages/ArchiveExamList.vue';
+import ArchiveExamDetail from '../views/pages/ArchiveExamDetail.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -62,10 +64,26 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/group_exams/:typeId/:subjectId',
+    path: '/group_exams/:typeId/',
     name: 'ExamCalender',
     components: {
       default:ExamCalender,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/group_exams/:typeId/archive',
+    name: 'ArchiveExamList',
+    components: {
+      default:ArchiveExamList,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/group_exam/:groupExamId/archive',
+    name: 'ArchiveExamDetail',
+    components: {
+      default:ArchiveExamDetail,
       'bottom-nav':BottomNav
     },
   },
@@ -76,14 +94,6 @@ const routes: Array<RouteRecordRaw> = [
       default:ExamList,
       'bottom-nav':BottomNav
     }
-  },
-  {
-    path: '/group_exams/:typeName',
-    name: 'ExamCalenderForTypeName',
-    components: {
-      default:ExamCalender,
-      'bottom-nav':BottomNav
-    },
   },
   {
     path: '/group_exams/enrolled',

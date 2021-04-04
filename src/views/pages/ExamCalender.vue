@@ -20,12 +20,15 @@
               <!-- <div ref="calendar"></div> -->
               <FullCalendar :events="exams" :options="options" />
             </div>
+            <div>
+              <ion-button @click="$router.push({name:'ArchiveExamList',params:{typeId:$route.params.typeId}})" color="primary" expand="full">Archive</ion-button>
+            </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-// import { IonContent } from '@ionic/vue';
+import { IonButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 // import {Calendar} from '@fullcalendar/core';
 import FullCalendar from 'primevue/fullcalendar';
@@ -47,7 +50,7 @@ export default defineComponent({
   },
   components: {
     FullCalendar,
-    // IonContent,
+    IonButton,
     // IonTitle,
     // IonToolbar
   },
@@ -67,12 +70,7 @@ export default defineComponent({
     }
   },
   mounted(){
-    let link;
-    if(this.$route.params.typeId!=null){
-        link='/group_exams/'+this.$route.params.typeId+'/'+this.$route.params.subjectId;
-    }else{
-        link='/group_exams/'+this.$route.params.typeName;
-    }
+    const link='/group_exams/'+this.$route.params.typeId;
 
     this.$http.get(link).then(response=>{
       const exams=[];

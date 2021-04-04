@@ -81,11 +81,7 @@ export default defineComponent({
                 return { name: 'ExamListForTypeName', params: { typeName: 'model_test' } }
             }
           }else if(this.$route.params.examModel=='group'){
-            if(type.id==7){
-                return { name: 'ExamCalenderForTypeName', params: { typeName: 'subject_final' } };
-            }else if(type.id==2){
-                return { name: 'ExamCalenderForTypeName', params: { typeName: 'model_test' } }
-            }
+            return {name:'ExamCalender', params:{typeId:type.id}};
           }
           return { name: 'Subjects', params: { typeId: type.id, examModel: this.$route.params.examModel} };
       }

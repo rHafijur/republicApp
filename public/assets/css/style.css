@@ -1439,13 +1439,13 @@ ul.questions>li:nth-child(odd) {
 .single-question .select-answer ul li span {
     font-size: 18px;
     color: #000;
-    margin-right: 15px;
+    /* margin-right: 15px;
     position: relative;
-    display: inline-block;
+    display: inline-block; */
 }
 
 .single-question .select-answer ul li span:after {
-    position: absolute;
+    /* position: absolute; */
     content: '';
     height: 3px;
     width: 3px;
