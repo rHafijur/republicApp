@@ -3,6 +3,8 @@ import { RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue'
 import BottomNav from '../views/components/layouts/BottomNav.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
+import Otp from '../views/Otp.vue'
 import Types from '../views/pages/Types.vue'
 import Subjects from '../views/pages/Subjects.vue'
 import ExamList from '../views/pages/ExamList.vue'
@@ -30,6 +32,16 @@ const routes: Array<RouteRecordRaw> = [
     path:'/login',
     name: 'Login',
     component:Login,
+  },
+  {
+    path:'/register',
+    name: 'Register',
+    component:Register,
+  },
+  {
+    path:'/otp',
+    name: 'Otp',
+    component:Otp,
   },
   {
     path: '/home',

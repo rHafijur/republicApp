@@ -54,7 +54,7 @@
                 </ul>
 
                 <div class="sign-up-text-btn">
-                    <p>Don't Have an account? <a href="register.html">SignUp</a></p>
+                    <p>Don't Have an account? <router-link :to="{name:'Register'}">Sign Up</router-link></p>
                 </div>
             </div>
         </div>
