@@ -31,7 +31,7 @@
                     </div>
                     <div class="r-form-check">
                         <label for=""><input type="checkbox" name="" id=""> Remember me</label>
-                        <span><a href="forget-password.html">Forget Password?</a></span>
+                        <span><router-link :to="{name:'ForgetPassword'}">Forget Password?</router-link></span>
                     </div>
                     <div class="r-form-submit">
                         <input @click="tryLogin" id="login" type="submit" value="Sign In">

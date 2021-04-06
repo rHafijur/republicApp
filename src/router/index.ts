@@ -3,8 +3,11 @@ import { RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue'
 import BottomNav from '../views/components/layouts/BottomNav.vue'
 import Login from '../views/Login.vue'
+import ForgetPassword from '../views/ForgetPassword.vue'
 import Register from '../views/Register.vue'
 import Otp from '../views/Otp.vue'
+import ForgetPasswordOtp from '../views/ForgetPasswordOtp.vue'
+import PasswordReset from '../views/PasswordReset.vue'
 import Types from '../views/pages/Types.vue'
 import Subjects from '../views/pages/Subjects.vue'
 import ExamList from '../views/pages/ExamList.vue'
@@ -34,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     component:Login,
   },
   {
+    path:'/forget_password',
+    name: 'ForgetPassword',
+    component:ForgetPassword,
+  },
+  {
     path:'/register',
     name: 'Register',
     component:Register,
@@ -42,6 +50,16 @@ const routes: Array<RouteRecordRaw> = [
     path:'/otp',
     name: 'Otp',
     component:Otp,
+  },
+  {
+    path:'/forget_password/otp',
+    name: 'ForgetPasswordOtp',
+    component:ForgetPasswordOtp,
+  },
+  {
+    path:'/forget_password/password/reset',
+    name: 'PasswordReset',
+    component:PasswordReset,
   },
   {
     path: '/home',
