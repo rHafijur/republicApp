@@ -34,9 +34,10 @@
             <ul class="qqbm-list">
                 <li>
                     <button @click="previewOn=true">Preview</button>
+                    
                 </li>
                 <li>
-                    <a href="#">Submit</a>
+                    <button @click="finishExam">Finish Exam</button>
                 </li>
                  
             </ul>
@@ -137,7 +138,17 @@ export default defineComponent({
   name: 'McqQuestionPaper',
 
   methods:{
-
+      finishExam(){
+        const link='/mcq_test/generate_result';
+        this.$http.post(link,{id:this.$route.params.id}).then(response=>{
+            if(response.data.status=='success'){
+                const id= response.data.id;
+                this.$router.replace({name:'TestResult', params:{id:id}});
+            }
+        }).catch(function (error) {
+            console.log(error);
+        })
+      }
   },
   components: {
     McqQuestion,
@@ -180,6 +191,7 @@ export default defineComponent({
       }
       const timer= setInterval(()=>{
           if(sec <=0 ){
+              this.finishExam();
              clearInterval(timer); 
           }
           const hour= addZiro(Math.floor(sec / 3600));

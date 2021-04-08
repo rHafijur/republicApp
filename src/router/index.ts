@@ -8,6 +8,8 @@ import Register from '../views/Register.vue'
 import Otp from '../views/Otp.vue'
 import ForgetPasswordOtp from '../views/ForgetPasswordOtp.vue'
 import PasswordReset from '../views/PasswordReset.vue'
+import Profile from '../views/pages/Profile.vue'
+import EditProfile from '../views/pages/EditProfile.vue'
 import Types from '../views/pages/Types.vue'
 import Subjects from '../views/pages/Subjects.vue'
 import ExamList from '../views/pages/ExamList.vue'
@@ -16,6 +18,10 @@ import EnrolledExamCalendar from '../views/pages/EnrolledExamCalendar.vue'
 import GroupExamDetail from '../views/pages/GroupExamDetail.vue';
 import IndividualExamDetail from '../views/pages/IndividualExamDetail.vue';
 import McqQuestionPaper from '../views/pages/McqQuestionPaper.vue';
+import TestResult from '../views/pages/TestResult.vue';
+import ExamHistory from '../views/pages/ExamHistory.vue';
+import MeritList from '../views/pages/MeritList.vue';
+import ScoreCard from '../views/pages/ScoreCard.vue';
 import ArchiveExamList from '../views/pages/ArchiveExamList.vue';
 import ArchiveExamDetail from '../views/pages/ArchiveExamDetail.vue';
 
@@ -66,6 +72,22 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     components: {
       default:Home,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    components: {
+      default:Profile,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/profile/edit',
+    name: 'EditProfile',
+    components: {
+      default:EditProfile,
       'bottom-nav':BottomNav
     },
   },
@@ -153,7 +175,39 @@ const routes: Array<RouteRecordRaw> = [
     path: '/mcq_question_paper/:id',
     name: 'McqQuestionPaper',
     component:McqQuestionPaper 
-  }
+  },
+  {
+    path: '/test_result/:id',
+    name: 'TestResult',
+    components: {
+      default:TestResult,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/merit_list/:id',
+    name: 'MeritList',
+    components: {
+      default:MeritList,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/exam_history',
+    name: 'ExamHistory',
+    components: {
+      default:ExamHistory,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/score_card',
+    name: 'ScoreCard',
+    components: {
+      default:ScoreCard,
+      'bottom-nav':BottomNav
+    },
+  },
 ]
 
 const router = createRouter({

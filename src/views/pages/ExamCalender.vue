@@ -41,9 +41,6 @@ export default defineComponent({
   name: 'ExamCalender',
 
   methods:{
-      getLink(type: any){
-          return "/";
-      },
        eventClicked(data: any){
         this.$router.push({name:'GroupExamDetail', params:{id:data.event._def.publicId}});
       }

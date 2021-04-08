@@ -26,20 +26,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <router-link :to="{name:'ScoreCard'}">
                         <div class="qbm-single">
                             <img src="assets/img/score.png" alt="">
                             <p>Score</p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="#">
+                    <router-link :to="{name:'Profile'}">
                         <div class="qbm-single">
                             <img src="assets/img/profile.png" alt="">
                             <p>Profile</p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>
