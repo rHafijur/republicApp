@@ -18,6 +18,7 @@ import EnrolledExamCalendar from '../views/pages/EnrolledExamCalendar.vue'
 import GroupExamDetail from '../views/pages/GroupExamDetail.vue';
 import IndividualExamDetail from '../views/pages/IndividualExamDetail.vue';
 import McqQuestionPaper from '../views/pages/McqQuestionPaper.vue';
+import McqPreview from '../views/pages/McqPreview.vue';
 import TestResult from '../views/pages/TestResult.vue';
 import ExamHistory from '../views/pages/ExamHistory.vue';
 import MeritList from '../views/pages/MeritList.vue';
@@ -175,6 +176,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/mcq_question_paper/:id',
     name: 'McqQuestionPaper',
     component:McqQuestionPaper 
+  },
+  {
+    path: '/mcq_preview/:id',
+    name: 'McqPreview',
+    component:McqPreview 
   },
   {
     path: '/test_result/:id',

@@ -85,7 +85,7 @@
             </div> -->
 
             <div class="pastEvery-exam-result">
-                <a href="#">Preview <i class="fa fa-angle-right"></i></a>
+                <router-link :to="{name:'McqPreview', params:{id:$route.params.id}}">Preview <i class="fa fa-angle-right"></i></router-link>
                 
             </div>
             <div class="pastEvery-exam-result">
