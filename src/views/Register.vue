@@ -83,10 +83,16 @@
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
+import { useBackButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Home',
+  created() {
+    useBackButton(10, () => {
+      this.$router.go(-1);
+    });
+  },
   data(){
     return {
       user:{
