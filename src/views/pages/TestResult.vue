@@ -14,27 +14,31 @@
                         <ul>
                             <li>
                                 <div class="prog-q-box">
-                                    <h4>{{test.earned_marks}}</h4>
+                                    <h4><span style="font-size: 1.2em; display:inline">{{test.earned_marks}}</span>/{{exam.number_of_question * exam.marks_per_question}}</h4>
                                     <span>Marks</span>
                                 </div>
                             </li>
                             <li>
                                 <div class="single-pq-box">
-                                    <h4>{{test.number_of_correct_answers}}</h4>
-                                    <p>Correct</p>
+                                    <h4>{{exam.number_of_question - test.number_of_not_answered}}</h4>
+                                    <p>Total Answer</p>
                                 </div>
                                 <div class="single-pq-box">
-                                    <h4>{{exam.number_of_question - test.number_of_not_answered}}</h4>
-                                    <p>Attempted</p>
+                                    <h4>{{test.number_of_correct_answers}}</h4>
+                                    <p>Correct Answer</p>
+                                </div>
+                                <div class="single-pq-box">
+                                    <h4>{{test.number_of_wrong_answers}}</h4>
+                                    <p>Wrong Answer</p>
                                 </div>
                                 <div class="single-pq-box">
                                     <h4>{{test.number_of_not_answered}}</h4>
-                                    <p>Remining</p>
+                                    <p>Not Answered</p>
                                 </div>
-                                <div class="single-pq-box">
+                                <!-- <div class="single-pq-box">
                                     <h4>{{test.time_taken}}</h4>
                                     <p>Time taken</p>
-                                </div>
+                                </div> -->
                             </li> 
                     </ul></div>
                 </div>
@@ -52,6 +56,19 @@
                         <p>Negative Marks</p>
                         <span>{{test.negative_marks}}</span>
                     </li>
+                </ul>
+            </div>
+            <div class="days-leftexam">
+                <ul>
+                    <li>
+                        <p>Total time</p>
+                        <span>{{totalTime}}</span>
+                    </li>
+                    <li>
+                        <p>Time taken</p>
+                        <span>{{test.time_taken}}</span>
+                    </li>
+                    
                 </ul>
             </div>
             <div class="days-leftexam">
@@ -107,10 +124,18 @@ export default defineComponent({
         test: {} as any,
         exam: {} as any,
         ranking: "" as string,
+        totalTime:"",
     }
   },
   methods:{
-    
+    addZiro(num: any){
+        num=Math.floor(num);
+            if(num<10){
+                return "0"+num;
+            }else{
+                return num;
+            }
+        }
   },
   components: {
     // IonHeader,
@@ -125,6 +150,11 @@ export default defineComponent({
         this.test=response.data.test;
         this.exam=response.data.exam;
         this.ranking=response.data.ranking;
+        const seconds=response.data.exam.total_duration * 60;
+        const hr=seconds/(60*60);
+        const mn=(seconds%(60*60))/60;
+        const sc=(seconds%(60*60))%60;
+        this.totalTime=this.addZiro(hr)+":"+this.addZiro(mn)+":"+this.addZiro(sc);
       }).catch(function (error) {
         console.log(error);
       })
@@ -138,5 +168,8 @@ export default defineComponent({
 }
 .days-leftexam ul li span span{
     display: inline !important;
+}
+.prog-q-box{
+    top:60px;
 }
 </style>

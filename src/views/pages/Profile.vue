@@ -29,32 +29,32 @@
                 </li>
                 <li>
                     <div class="single-menu">
-                        <a href="university.html">
+                        <router-link :to="{name:'Categories'}"> 
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/notification.png" alt="">
+                                <img src="assets/img/exam-history.png" alt="">
                             </div> 
-                            <p>Notification</p>
-                        </a>
+                            <p>Categories</p>
+                        </router-link>
                     </div>
                 </li>
                 <li>
                     <div class="single-menu">
-                        <a href="university.html">
+                        <router-link :to="{name:'Balance'}">
                             <div class="menu-single-icon menu-icon-style-b">
                                 <img src="assets/img/balance.png" alt="">
                             </div> 
                             <p>Balance</p>
-                        </a>
+                        </router-link>
                     </div>
                 </li>
                 <li>
                     <div class="single-menu">
-                        <a href="university.html">
+                        <router-link :to="{name:'Packages'}"> 
                             <div class="menu-single-icon menu-icon-style-b">
                                 <img src="assets/img/payment-history.png" alt="">
                             </div> 
-                            <p>Payment History</p>
-                        </a>
+                            <p>Packages</p>
+                        </router-link>
                     </div>
                 </li>
                 <li>
@@ -88,13 +88,13 @@
                     </div>
                 </li>
                 <li>
-                    <div class="single-menu">
-                        <a href="university.html">
-                            <div class="menu-single-icon menu-icon-style-b">
+                    <div class="single-menu" >
+                            <span @click="logout">
+                                <div class="menu-single-icon menu-icon-style-b">
                                 <img src="assets/img/help-support.png" alt="">
-                            </div> 
-                            <p>Help &amp; Support</p>
-                        </a>
+                                </div> 
+                                <p>Logout</p>
+                            </span>
                     </div>
                 </li>
             </ul>
@@ -117,6 +117,10 @@ export default defineComponent({
   methods:{
       getLink(id: any){
           return { name: 'IndividualExamDetail', params: { id: id } };
+      },
+      logout(){
+          localStorage.token=null;
+           this.$router.push({ name: 'Login' });
       }
   },
   components: {
@@ -139,5 +143,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.single-menu span {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    padding: 14px 15px;
+    -webkit-box-shadow: 0px 0px 12px -8px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 0px 0px 12px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 12px -8px rgb(0 0 0 / 75%);
+    min-height: 105px;
+}
 </style>

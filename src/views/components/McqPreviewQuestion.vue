@@ -7,10 +7,10 @@
             </div>
             <div class="select-answer">
                 <ul>
-                    <li><input :class="{correct:qa.correct_option=='option_1',wrong:qa.correct_option!='option_1'}" disabled type="radio" value="option_1" v-model="option"><div><span>A</span><div v-html="qa.question.mcq_question.option_1"></div></div></li>
-                    <li><input :class="{correct:qa.correct_option=='option_2',wrong:qa.correct_option!='option_2'}" disabled type="radio" value="option_2" v-model="option"><div><span>B</span><div v-html="qa.question.mcq_question.option_2"></div></div></li>
-                    <li><input :class="{correct:qa.correct_option=='option_3',wrong:qa.correct_option!='option_3'}" disabled type="radio" value="option_3" v-model="option"><div><span>C</span><div v-html="qa.question.mcq_question.option_3"></div></div></li>
-                    <li><input :class="{correct:qa.correct_option=='option_4',wrong:qa.correct_option!='option_4'}" disabled type="radio" value="option_4" v-model="option"><div><span>D</span><div v-html="qa.question.mcq_question.option_4"></div></div></li>
+                    <li><input :class="{correct:qa.correct_option=='option_1',wrong:qa.correct_option!='option_1'}" disabled type="radio" value="option_1" v-model="option"><div class="opt-name"><span>A</span><div class="opt-text" v-html="qa.question.mcq_question.option_1"></div></div></li>
+                    <li><input :class="{correct:qa.correct_option=='option_2',wrong:qa.correct_option!='option_2'}" disabled type="radio" value="option_2" v-model="option"><div class="opt-name"><span>B</span><div class="opt-text" v-html="qa.question.mcq_question.option_2"></div></div></li>
+                    <li><input :class="{correct:qa.correct_option=='option_3',wrong:qa.correct_option!='option_3'}" disabled type="radio" value="option_3" v-model="option"><div class="opt-name"><span>C</span><div class="opt-text" v-html="qa.question.mcq_question.option_3"></div></div></li>
+                    <li><input :class="{correct:qa.correct_option=='option_4',wrong:qa.correct_option!='option_4'}" disabled type="radio" value="option_4" v-model="option"><div class="opt-name"><span>D</span><div class="opt-text" v-html="qa.question.mcq_question.option_4"></div></div></li>
                 </ul>
                 <p class="sa-correct-ans">Correct Ans: {{getOption()}}</p>
             </div>

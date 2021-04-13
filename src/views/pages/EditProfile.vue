@@ -8,8 +8,8 @@
                 <div class="q-row">
                     <div class="profile-head-box">
                         <img src="assets/img/profile-img.png" alt="" class="user-img">
-                        <h4>{{user.name}}</h4>
-                        <span>{{user.phone}}</span>
+                        <h3>Republic Education</h3>
+                        <p>Spread Your Knowledge</p>
                     </div>
                  
                 </div>

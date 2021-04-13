@@ -26,6 +26,7 @@
     "primevue": "^3.3.5",
     "vue": "^3.0.0-0",
     "vue-axios": "^3.2.4",
+    "vue-pdf": "^4.2.0",
     "vue-resource": "^1.5.2",
     "vue-router": "^4.0.0-0"
   },
@@ -45,6 +46,7 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-0",
     "babel-eslint": "^10.1.0",
+    "cordova-res": "^0.15.3",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^7.0.0-0",
     "typescript": "~3.9.3",

@@ -17,7 +17,32 @@
             </div>
         </div>
         <!-- /Header Area -->
-        <div class="q-notific-box qlV2">
+        <!-- <DataTable :value="tests" responsiveLayout="scroll">
+            <Column field="user.name" header="Name"></Column>
+            <Column field="earned_marks" header="Marks"></Column>
+            <Column header="Position">
+                <template let-i="rowIndex">
+                    {{i+1}}
+                </template>
+            </Column>
+        </DataTable> -->
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Marks</th>
+                    <th>Positon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(test,i) of tests" :key="i">
+                    <td>{{test.user.name}}</td>
+                    <td>{{test.earned_marks}}</td>
+                    <td style="text-align:right !important">{{i+1}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div class="q-notific-box qlV2">
             <ul class="qnot-list">
                 <li v-for="(test,i) of tests" :key="i">
                     <div class="single-merit">
@@ -25,12 +50,14 @@
                     </div>
                 </li>
             </ul> 
-        </div>  
+        </div>   -->
     </div>
 </template>
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
+// import DataTable from 'primevue/datatable';
+// import Column from 'primevue/column';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -46,8 +73,8 @@ export default defineComponent({
       }
   },
   components: {
-    // IonHeader,
-    // IonPage,
+    // DataTable,
+    // Column,
     // IonTitle,
     // IonToolbar
   },

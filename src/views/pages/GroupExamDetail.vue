@@ -7,8 +7,8 @@
             <div class="q-container">
                 <div class="q-row">
                     <div class="q-full-width">
-                        <h3>Repblic Education</h3>
-                        <p>Republic Engineering Daily Exam Preparation.</p>
+                        <h3>Republic Education</h3>
+                        <p>Spread Your Knowledge</p>
                     </div>
                 </div>
             </div>
@@ -137,6 +137,7 @@ export default defineComponent({
         groupExamId:this.examInfo.group_exam_id
       }).then(response=>{
         if(response.data.charge_failed==true){
+          this.$router.push({name:'Packages'});
           console.log(response.data);
         }else{
           this.examInfo.hasEnroled=true;

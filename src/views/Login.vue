@@ -19,7 +19,7 @@
             </div>
             <div class="login-form">
                   <div class="r-form-group">
-                        <label for="">Mobile No</label>
+                        <label for="">Mobile Number</label>
                         <input type="text" class="form-control" v-model="user.phone" :class="{'is-invalid':isAuthenticationFailed}" placeholder="Enter your Mobile no" name="" id="">
                         <div class="invalid-feedback">
                           Wrong Phone or Password!
@@ -36,7 +36,7 @@
                     <div class="r-form-submit">
                         <input @click="tryLogin" id="login" type="submit" value="Sign In">
                     </div>
-                  <span class="ortext">Or</span>
+                  <!-- <span class="ortext">Or</span>
 
                 <ul class="fg-list">
                     <li>
@@ -51,7 +51,7 @@
                             <span>Google</span>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
 
                 <div class="sign-up-text-btn">
                     <p>Don't Have an account? <router-link :to="{name:'Register'}">Sign Up</router-link></p>
@@ -93,6 +93,7 @@ export default defineComponent({
         }else{
           console.log(response.data);
           localStorage.token=response.data.token;
+          localStorage.types=response.data.types;
           this.$router.replace({name:'Home'});
         }
       }).catch(function (error) {

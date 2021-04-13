@@ -26,8 +26,9 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 // import './theme/variables.css';
-// axios.defaults.baseURL = 'http://localhost/modelTest/public/api';
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+axios.defaults.baseURL = 'https://student.republiceducationbd.com/api/';
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+// axios.defaults.baseURL = 'http://10.0.2.2:8000/api';
 
 // axios.defaults.headers.common['Authorization'] = "Bearer "+localStorage.token;
 axios.interceptors.request.use(
@@ -47,7 +48,9 @@ axios.interceptors.request.use(
 );
 
 const app = createApp(App)
-.use(IonicVue)
+.use(IonicVue,{
+  hardwareBackButton:true,
+})
 .use(VueAxios,axios)
 .use(router)
 .use(PrimeVue)

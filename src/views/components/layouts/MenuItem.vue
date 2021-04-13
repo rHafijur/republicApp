@@ -15,7 +15,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'BottomNav',
+  name: 'MenuItem',
   props:['icon','title','link'],
   components: {
     // IonContent,

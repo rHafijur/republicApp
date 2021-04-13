@@ -6,23 +6,35 @@
             <div class="q-container">
                 <div class="q-row">
                     <div class="q-full-width">
-                        <h3>Repblic Education</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                        <h3>Republic Education</h3>
+                        <p>Spread Your Knowledge</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /Header Area -->
         <div class="q-menu-box">
-            <p>Repblic Education</p>
+            <p>Republic Education</p>
             <ul class="q-menu-list">
                 <menu-item :link="{name:'Types',params:{examModel:'individual'}}" title="Individual Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
                 <menu-item :link="{name:'Types',params:{examModel:'group'}}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
                 <menu-item :link="{name:'EnrolledExamCalendar'}" title="Enrolled Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <li>
+                    <div class="single-menu">
+                        <span>
+                            <div class="menu-single-icon menu-icon-style-b">
+                                <img src="assets/img/academic-exam-icon.png" alt="Routine">
+                            </div> 
+                            <p>Routine</p>
+                        </span>
+                    </div>
+                </li>
+                <menu-item :link="{name:'ExamHistory'}" title="My Result" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <menu-item :link="{name:'Packages'}" title="Packages" icon="assets/img/academic-exam-icon.png"></menu-item>
                 <!-- <menu-item :link="{}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
         </div>
-        <div class="category-slider">
+        <!-- <div class="category-slider">
             <p>Republic Categories</p>
             <div class="cs-owl-slider owl-carousel owl-theme">
                 <div class="item">
@@ -54,7 +66,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
       </div>
 </template>
 

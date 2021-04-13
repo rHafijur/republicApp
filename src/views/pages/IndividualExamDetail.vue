@@ -7,8 +7,8 @@
             <div class="q-container">
                 <div class="q-row">
                     <div class="q-full-width">
-                        <h3>Repblic Education</h3>
-                        <p>Republic Engineering Daily Exam Preparation.</p>
+                        <h3>Republic Education</h3>
+                        <p>Spread Your Knowledge</p>
                     </div>
                 </div>
             </div>
@@ -16,6 +16,7 @@
         <!-- /Header Area -->
         <div class="q-menu-box">
             <p class="text-center">Exam Details</p>
+            <span @click="start" class="start-exam-btn">Start Your Exam</span>
             <div class="model-test-list">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-10 content">
@@ -82,7 +83,7 @@
                                     
                                 >
                                 </ion-loading>
-                            <ion-button @click="start" color="primary" expand="full">Start Exam</ion-button>
+                            <!-- <ion-button @click="start" color="primary" expand="full">Start Exam</ion-button> -->
                           </div>
                             
                         </div>
@@ -96,7 +97,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton, IonLoading } from '@ionic/vue';
+import { IonLoading } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -127,6 +128,7 @@ export default defineComponent({
       this.$http.get('/individual_exam/'+this.examInfo.exam_id+'/start').then(response=>{
         this.isLoading=false;
         if(response.data.charge_failed==true){
+          this.$router.push({name:'Packages'});
           console.log(response.data);
         }else{
           console.log(response.data);
@@ -139,7 +141,7 @@ export default defineComponent({
       })
     }
   },
-  components: {IonButton, IonLoading}
+  components: { IonLoading}
 });
 </script>
 

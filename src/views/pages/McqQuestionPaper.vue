@@ -1,5 +1,5 @@
 <template>
-    <div class="quiz-app-wrapper qaw-v2">
+    <div class="quiz-app-wrapper qaw-v2 quiz-q">
          
         <!-- Header Area -->
         <div class="quiz-header quizHeaderV2">
@@ -33,11 +33,11 @@
         <div class="quiz-q-bottom-menus">
             <ul class="qqbm-list">
                 <li>
-                    <button @click="previewOn=true">Preview</button>
+                    <button @click="previewOn=true">OMR Sheet</button>
                     
                 </li>
                 <li>
-                    <button @click="finishExam">Finish Exam</button>
+                    <button class="finish-exam-button" @click="finishExam">Finish Exam</button>
                 </li>
                  
             </ul>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="q-full-width">
                         
-                        <h3>Preview</h3>
+                        <h3>OMR Sheet</h3>
                         <span class="quiz-countdown">
                             {{timer}}
                         </span>

@@ -6,8 +6,8 @@
             <div class="q-container">
                 <div class="q-row">
                     <div class="q-full-width">
-                        <h3>Repblic Education</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                        <h3>Republic Education</h3>
+                        <p>Spread Your Knowledge</p>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <!-- <menu-item title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
         </div>
-        <div class="category-slider">
+        <!-- <div class="category-slider">
             <p>Republic Categories</p>
             <div class="cs-owl-slider owl-carousel owl-theme">
                 <div class="item">
@@ -54,14 +54,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
       </div>
 </template>
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
-import MenuItem from  '../components/layouts/MenuItem.vue'
 import { defineComponent } from 'vue';
+import MenuItem from  '../components/layouts/MenuItem.vue'
 
 export default defineComponent({
   name: 'Individual',

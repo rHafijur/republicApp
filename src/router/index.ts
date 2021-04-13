@@ -23,6 +23,9 @@ import TestResult from '../views/pages/TestResult.vue';
 import ExamHistory from '../views/pages/ExamHistory.vue';
 import MeritList from '../views/pages/MeritList.vue';
 import ScoreCard from '../views/pages/ScoreCard.vue';
+import Packages from '../views/pages/Packages.vue';
+import Balance from '../views/pages/Balance.vue';
+import Categories from '../views/pages/Categories.vue';
 import ArchiveExamList from '../views/pages/ArchiveExamList.vue';
 import ArchiveExamDetail from '../views/pages/ArchiveExamDetail.vue';
 
@@ -75,6 +78,13 @@ const routes: Array<RouteRecordRaw> = [
       default:Home,
       'bottom-nav':BottomNav
     },
+    beforeEnter: (to, from, next) => {
+      if(localStorage.types!=null && localStorage.length<1){
+        next({name:'Categories'});
+      }else{
+        next();
+      }
+    }
   },
   {
     path: '/profile',
@@ -93,7 +103,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/:examModel/types',
+    path: '/exam/:examModel/types',
     name: 'Types',
     components: {
       default:Types,
@@ -211,6 +221,30 @@ const routes: Array<RouteRecordRaw> = [
     name: 'ScoreCard',
     components: {
       default:ScoreCard,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/packages',
+    name: 'Packages',
+    components: {
+      default:Packages,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/balance',
+    name: 'Balance',
+    components: {
+      default:Balance,
+      'bottom-nav':BottomNav
+    },
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    components: {
+      default:Categories,
       'bottom-nav':BottomNav
     },
   },

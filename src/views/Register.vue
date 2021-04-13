@@ -55,7 +55,7 @@
                         <input @click="tryRegister" type="submit" value="Sign Up">
                     </div>
                 </div>
-                <span class="ortext">Or</span>
+                <!-- <span class="ortext">Or</span>
 
                 <ul class="fg-list">
                     <li>
@@ -70,7 +70,7 @@
                             <span>Google</span>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
 
                 <div class="sign-up-text-btn">
                     <p>Already Have Account? <router-link :to="{name:'Login'}">Sign In</router-link></p>
