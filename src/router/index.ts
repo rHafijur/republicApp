@@ -25,15 +25,38 @@ import MeritList from '../views/pages/MeritList.vue';
 import ScoreCard from '../views/pages/ScoreCard.vue';
 import Packages from '../views/pages/Packages.vue';
 import Balance from '../views/pages/Balance.vue';
+import Faq from '../views/pages/Faq.vue';
 import Categories from '../views/pages/Categories.vue';
 import ArchiveExamList from '../views/pages/ArchiveExamList.vue';
 import ArchiveExamDetail from '../views/pages/ArchiveExamDetail.vue';
 
+const ifNotAuthenticated = (to: any, from: any, next: any) => {
+  if (localStorage.token == null) {
+    next()
+    return
+  }
+  next('/')
+}
+
+const ifAuthenticated = (to: any, from: any, next: any) => {
+  if (localStorage.token != null) {
+    if(localStorage.phoneVerified=='false'){
+      next({name:'Otp'});
+    }else{
+      if(localStorage.types!=null && localStorage.types.length > 0 ){
+        next();
+        return;
+      }
+      next({name:'Categories'});
+      return
+    }
+  }
+  next('/login')
+}
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: to =>{
-      console.log(to);
+    redirect: () =>{
       
       if(localStorage.token != null){
         return "/home";
@@ -45,16 +68,19 @@ const routes: Array<RouteRecordRaw> = [
     path:'/login',
     name: 'Login',
     component:Login,
+    beforeEnter:ifNotAuthenticated
   },
   {
     path:'/forget_password',
     name: 'ForgetPassword',
     component:ForgetPassword,
+    beforeEnter:ifNotAuthenticated
   },
   {
     path:'/register',
     name: 'Register',
     component:Register,
+    beforeEnter:ifNotAuthenticated
   },
   {
     path:'/otp',
@@ -78,13 +104,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Home,
       'bottom-nav':BottomNav
     },
-    beforeEnter: (to, from, next) => {
-      if(localStorage.types!=null && localStorage.length<1){
-        next({name:'Categories'});
-      }else{
-        next();
-      }
-    }
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/profile',
@@ -93,6 +113,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Profile,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/profile/edit',
@@ -101,6 +122,7 @@ const routes: Array<RouteRecordRaw> = [
       default:EditProfile,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/exam/:examModel/types',
@@ -109,6 +131,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Types,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/:examModel/subject/:typeId',
@@ -117,6 +140,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Subjects,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/individual_exams/:typeId/:subjectId',
@@ -125,6 +149,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ExamList,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/group_exams/:typeId/',
@@ -133,6 +158,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ExamCalender,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/group_exams/:typeId/archive',
@@ -141,6 +167,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ArchiveExamList,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/group_exam/:groupExamId/archive',
@@ -149,6 +176,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ArchiveExamDetail,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/individual_exams/:typeName',
@@ -156,7 +184,8 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       default:ExamList,
       'bottom-nav':BottomNav
-    }
+    },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/group_exams/enrolled',
@@ -165,6 +194,7 @@ const routes: Array<RouteRecordRaw> = [
       default:EnrolledExamCalendar,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/group_exam/:id',
@@ -173,6 +203,7 @@ const routes: Array<RouteRecordRaw> = [
       default:GroupExamDetail,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/individual_exam/:id',
@@ -181,16 +212,19 @@ const routes: Array<RouteRecordRaw> = [
       default:IndividualExamDetail,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/mcq_question_paper/:id',
     name: 'McqQuestionPaper',
-    component:McqQuestionPaper 
+    component:McqQuestionPaper ,
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/mcq_preview/:id',
     name: 'McqPreview',
-    component:McqPreview 
+    component:McqPreview ,
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/test_result/:id',
@@ -199,6 +233,7 @@ const routes: Array<RouteRecordRaw> = [
       default:TestResult,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/merit_list/:id',
@@ -207,6 +242,7 @@ const routes: Array<RouteRecordRaw> = [
       default:MeritList,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/exam_history',
@@ -215,6 +251,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ExamHistory,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/score_card',
@@ -223,6 +260,7 @@ const routes: Array<RouteRecordRaw> = [
       default:ScoreCard,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/packages',
@@ -231,6 +269,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Packages,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/balance',
@@ -239,6 +278,7 @@ const routes: Array<RouteRecordRaw> = [
       default:Balance,
       'bottom-nav':BottomNav
     },
+    beforeEnter:ifAuthenticated
   },
   {
     path: '/categories',
@@ -247,6 +287,21 @@ const routes: Array<RouteRecordRaw> = [
       default:Categories,
       'bottom-nav':BottomNav
     },
+    beforeEnter:(to: any, from: any, next: any) => {
+      if (localStorage.token != null) {
+        next();
+      }
+      next('/login')
+    }
+  },
+  {
+    path: '/faqs',
+    name: 'Faq',
+    components: {
+      default:Faq,
+      'bottom-nav':BottomNav
+    },
+    beforeEnter:ifAuthenticated
   },
 ]
 

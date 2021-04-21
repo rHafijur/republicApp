@@ -140,6 +140,7 @@ export default defineComponent({
           this.verificationFailed=true;
         }else{
           localStorage.token=response.data.token;
+          localStorage.phoneVerified="true";
           this.$router.replace({name:'Home'});
         }
         

@@ -1,0 +1,24 @@
+{
+    "faqs":[
+        {
+            "priority":1,
+            "text":"What is JSON?",
+            "ans":"JSON is a data stcture"
+        },
+        {
+            "priority":10,
+            "text":"What is Republic education?",
+            "ans":"dash dahs dahs"
+        },
+        {
+            "priority":10,
+            "text":"What is Republic education?",
+            "ans":"dash dahs dahs"
+        },
+        {
+            "priority":10,
+            "text":"What is Republic education?",
+            "ans":"dash dahs dahs"
+        }
+    ]
+}

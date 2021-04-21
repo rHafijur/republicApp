@@ -50,7 +50,7 @@
                             <option value="4">Bank Job</option>
                         </select>
                     </div> -->
-                    
+                    <p style="font-size:12px;line-height:15px;margin-bottom:15px">By clicking on 'Sign Up' button you are agree with our <span @click="openPrivacyPolicy" style="font-size:1.1em;color:blue">Privacy Policy</span></p>
                     <div class="r-form-submit">
                         <input @click="tryRegister" type="submit" value="Sign Up">
                     </div>
@@ -83,6 +83,7 @@
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
+import { Browser } from '@capacitor/browser';
 import { useBackButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
@@ -117,6 +118,9 @@ export default defineComponent({
     // IonToolbar
   },
   methods:{
+    async openPrivacyPolicy(){
+           await Browser.open({ url: 'https://student.republiceducationbd.com/privacy_policy'});
+    },
     tryRegister(){
       if(this.user.name.length<3){
           this.isNameError=true;

@@ -92,5 +92,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+table{
+    background-color: #EBEBEB;
+}
 </style>

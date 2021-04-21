@@ -555,6 +555,7 @@ ul.q-menu-list li .single-menu {}
 
 .single-menu {
     position: relative;
+    min-height: 130px;
     padding: 10px 10px;
     text-align: center;
 }
@@ -1113,7 +1114,7 @@ ul.mt-list li {
     vertical-align: middle;
 }
 
-ul.mt-list li:first-child {
+/* ul.mt-list li:first-child {
     background-color: #FF4F4F;
     height: 60px;
     width: 67px;
@@ -1126,14 +1127,20 @@ ul.mt-list li:first-child {
     text-align: center;
     border-radius: 5px;
     margin: 5px;
+} */
+
+ul.mt-list li:first-child {
+    min-height: 60px;
+    max-height: 80px;
+    width: calc(100% - 70px);
+    margin: 5px;
+    text-align: start;
 }
 
 ul.mt-list li:nth-child(2) {
-    width: calc(100% - 110px);
-}
-
-ul.mt-list li:nth-child(3) {
     width: 24px;
+    margin: 5px;
+    align-items: flex-end;
 }
 
 ul.mt-list li i {
@@ -1251,8 +1258,8 @@ ul.model-test-list.eng-resources-exam-lists ul.mt-list li:nth-child(2) p {
 
 .quiz-header.quizHeaderV2 h3 {
     color: #469848;
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 24px;
+    line-height: 30px;
     display: inline-block;
 }
 
@@ -1278,10 +1285,10 @@ ul.model-test-list.eng-resources-exam-lists ul.mt-list li:nth-child(2) p {
 span.quiz-countdown {
     position: absolute;
     right: 15px;
-    bottom: 28px;
+    bottom: 34px;
     letter-spacing: 0px;
-    font-size: 16px;
-    color: #6fb744;
+    font-size: 18px;
+    color: #ad0037;
 }
 
 
@@ -1482,7 +1489,7 @@ ul.qqbm-list {
 ul.qqbm-list li {
     position: relative;
     display: inline-block;
-    margin: 0px 10px;
+    margin: 4px 10px;
 }
 
 ul.qqbm-list li a {
@@ -1754,8 +1761,8 @@ ul.questions .select-answer ul.q-list li {
 .opt-name span{
     font-weight: 400;
 }
-.opt-name span:after{
-    content: ')' !important;
+.opt-name > span:after{
+    content: ') ' !important;
     background-color:transparent !important;
 }
 .qoustion-area *{
@@ -1826,4 +1833,8 @@ span.start-exam-btn {
 }
 .finish-exam-button{
     background-color: #ff1000 !important;
+}
+.question * {
+    font-size: 18px !important;
+    font-weight: 500 !important;
 }

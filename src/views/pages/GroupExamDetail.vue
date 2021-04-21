@@ -79,7 +79,7 @@
                         <hr>
                         <div class="form-row">
                           <div class="col-md-12">
-                            <ion-button @click="enroll" v-if="!examInfo.hasEnroled" color="primary" expand="full">Enroll</ion-button>
+                            <ion-button @click="confirm" v-if="!examInfo.hasEnroled" color="primary" expand="full">Enroll</ion-button>
                             <ion-button @click="start" v-if="examInfo.hasEnroled && examInfo.test==null" color="primary" expand="full">Start</ion-button>
                             <ion-button @click="continueExam" v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished!=1" color="primary" expand="full">Continue</ion-button>
                             <ion-button v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished==1" disabled color="primary" expand="full">Finished</ion-button>
@@ -108,7 +108,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton, IonLoading } from '@ionic/vue';
+import { IonButton, IonLoading, alertController } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -146,6 +146,29 @@ export default defineComponent({
         console.log(error);
       })
     },
+    async confirm() {
+      const fee=this.examInfo.fee;
+      const alert = await alertController
+        .create({
+          cssClass: 'my-custom-class',
+          header: 'Alert!',
+          message: 'By starting the exam your account might be charged by BDT '+fee+' or 1 Exam unit.',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                this.enroll();
+              },
+            },
+          ],
+        });
+      return alert.present();
+    },
     startExam(){
       this.isLoading=true;
       this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/start').then(response=>{
@@ -170,8 +193,7 @@ export default defineComponent({
       let sec= (new Date(this.examInfo.starts_at).getTime()- new Date().getTime())/1000;
       if(sec<0){
         this.startExam();
-      }
-      if(this.timer==''){
+      }else if(this.timer==''){
         const timer= setInterval(()=>{
           if(sec <=0 ){
             if(this.startPressed){

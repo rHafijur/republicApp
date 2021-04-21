@@ -10,7 +10,13 @@
                         <h3>{{exam.title}}</h3> 
                         <p>My Study Progress</p>
                     </div>
-                    <div class="q-progress-head">
+                    <div v-if="isResultPending" class="q-progress-haed">
+                        <div class="result-pending">
+                            <div class="result-pending-head">Result is still pending</div>
+                            <div class="result-pending-body">Please wait a while for the result</div>
+                        </div>
+                    </div>
+                    <div v-else class="q-progress-head">
                         <ul>
                             <li>
                                 <div class="prog-q-box">
@@ -45,7 +51,7 @@
             </div>
         </div>
         <!-- /Header Area -->
-        <div class="q-notific-box qlV4">
+        <div v-if="!isResultPending" class="q-notific-box qlV4">
             <div class="days-leftexam">
                 <ul>
                     <li>
@@ -137,6 +143,17 @@ export default defineComponent({
             }
         }
   },
+  computed:{
+      isResultPending(){
+          if(this.test.group_exam==null){
+              return false;
+          }
+          if(this.test.group_exam.is_result_published==0){
+              return true;
+          }
+          return false;
+      }
+  },
   components: {
     // IonHeader,
     // IonPage,
@@ -171,5 +188,18 @@ export default defineComponent({
 }
 .prog-q-box{
     top:60px;
+}
+.result-pending{
+    padding-top:60px ;
+    margin: auto;
+
+}
+.result-pending-head{
+    font-size:24px;
+    color: rgb(247, 62, 62);
+}
+.result-pending-body{
+    font-size: 15px;
+    color: rgb(234, 255, 255);
 }
 </style>

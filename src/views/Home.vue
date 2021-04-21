@@ -14,23 +14,23 @@
         </div>
         <!-- /Header Area -->
         <div class="q-menu-box">
-            <p>Republic Education</p>
+            <!-- <p>Republic Education</p> -->
             <ul class="q-menu-list">
-                <menu-item :link="{name:'Types',params:{examModel:'individual'}}" title="Individual Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
-                <menu-item :link="{name:'Types',params:{examModel:'group'}}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
-                <menu-item :link="{name:'EnrolledExamCalendar'}" title="Enrolled Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <menu-item :link="{name:'Types',params:{examModel:'individual'}}" title="INDIVIDUAL EXAM" icon="assets/img/individual.svg"></menu-item>
+                <menu-item :link="{name:'Types',params:{examModel:'group'}}" title="GROUP EXAM" icon="assets/img/group.svg"></menu-item>
+                <menu-item :link="{name:'EnrolledExamCalendar'}" title="ENROLLED GROUP EXAM" icon="assets/img/enrolled.svg"></menu-item>
                 <li>
                     <div class="single-menu">
-                        <span>
+                        <span @click="openRoutine">
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/academic-exam-icon.png" alt="Routine">
+                                <img src="assets/img/routine.png" alt="Routine">
                             </div> 
-                            <p>Routine</p>
+                            <p>ROUTINE</p>
                         </span>
                     </div>
                 </li>
-                <menu-item :link="{name:'ExamHistory'}" title="My Result" icon="assets/img/academic-exam-icon.png"></menu-item>
-                <menu-item :link="{name:'Packages'}" title="Packages" icon="assets/img/academic-exam-icon.png"></menu-item>
+                <menu-item :link="{name:'ExamHistory'}" title="MY RESULTS" icon="assets/img/result.svg"></menu-item>
+                <menu-item :link="{name:'Packages'}" title="PACKAGE" icon="assets/img/package.svg"></menu-item>
                 <!-- <menu-item :link="{}" title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
         </div>
@@ -72,7 +72,8 @@
 
 <script lang="ts">
 // import { IonContent } from '@ionic/vue';
-import MenuItem from  './components/layouts/MenuItem.vue'
+import MenuItem from  './components/layouts/MenuItem.vue';
+import { Browser } from '@capacitor/browser';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -83,10 +84,17 @@ export default defineComponent({
     // IonPage,
     // IonTitle,
     // IonToolbar
+  },
+  methods:{
+     async openRoutine(){
+           await Browser.open({ url: 'https://student.republiceducationbd.com/routine.pdf'});
+      }
   }
 });
 </script>
 
 <style scoped>
-
+q-menu-list>*{
+    text-transform: capitalize;
+}
 </style>

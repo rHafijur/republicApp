@@ -5,9 +5,9 @@
         <div class="quiz-header quizHeaderV2">
             <div class="q-container">
                 <div class="q-row">
-                    <div class="q-back">
+                    <!-- <div class="q-back">
                         <button @click="$router.go(-1)"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-                    </div>
+                    </div> -->
                     <div class="q-full-width">
                         
                         <h3>{{exam.title}}</h3>

@@ -17,7 +17,7 @@
             <p>{{pageTitle}}</p>
             <ul class="q-menu-list">
                 <template v-for="(type,i) of types" :key="i">
-                    <menu-item :link="getLink(type)" :title="type.title" icon="assets/img/academic-exam-icon.png"></menu-item>
+                    <menu-item :link="getLink(type)" :title="type.title" icon="assets/img/exam.png"></menu-item>
                 </template>
                 <!-- <menu-item title="Group Exam" icon="assets/img/academic-exam-icon.png"></menu-item> -->
             </ul>
@@ -95,13 +95,14 @@ export default defineComponent({
   },
   created(){
     if(this.$route.params.examModel=='individual'){
-      this.pageTitle="Individual Exam";
+      this.pageTitle="INDIVIDUAL EXAM";
     }else if(this.$route.params.examModel=='group'){
-      this.pageTitle="Group Exam";
+      this.pageTitle="GROUP EXAM";
     }
     this.$http.get('/individual_exam/types').then(response=>{
         // console.log(response.data);
         this.types=response.data;
+        localStorage.types=JSON.stringify(this.types);
       }).catch(function (error) {
         console.log(error);
       })

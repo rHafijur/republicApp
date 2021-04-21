@@ -25,10 +25,11 @@
                         <span class="sm-name">{{test.exam.title}}</span> 
                         <span class="sm-date">{{test.date}}</span>
                         <span v-if="test.is_finished==1" class="marks-box">
-                            <span class="pfp">{{test.earned_marks}}</span>
+                            <span v-if="isResultPending(test)" class="pfp pending">Pending</span>
+                            <span v-else class="pfp">{{test.earned_marks}}</span>
                             <!-- <span class="pf">Pass</span> -->
                         </span>
-                        <span style="position:absolute;top:0;right:0" v-else><button class="btn btn-info">Continue</button></span>
+                        <span style="position:absolute;top:0;right:0" v-else><button class="btn btn-info cont">Continue</button></span>
                     </div>
                 </li>
             </ul> 
@@ -55,6 +56,15 @@ export default defineComponent({
               this.$router.push({name:'McqQuestionPaper',params:{id:test.encId}});
           }
           
+      },
+      isResultPending(test: any){
+          if(test.group_exam==null){
+              return false;
+          }
+          if(test.group_exam.is_result_published==0){
+              return true;
+          }
+          return false;
       }
   },
   components: {
@@ -77,5 +87,20 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.single-merit.smv2 span.sm-name {
+    max-width: calc(100% - 75px);
+}
+.single-merit.smv2 span.sm-date {
+    padding-top: 2px;
+    font-size: 11px;
+}
+.pending{
+    font-size: 12px !important;
+}
+.pfp{
+    padding-top: 5px;
+}
+.cont{
+    margin: 18px -11px;
+}
 </style>

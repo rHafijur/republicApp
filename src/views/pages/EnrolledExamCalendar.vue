@@ -64,7 +64,7 @@ export default defineComponent({
     }
   },
   mounted(){
-    const link='/group_exams/enrolled';
+    const link='/enrolled/group_exams';
 
     this.$http.get(link).then(response=>{
       const exams=[];

@@ -2,28 +2,28 @@
     <div class="q-bottom-menus">
             <ul class="qbm-list">
                 <li>
-                    <a href="#">
+                    <router-link :to="{name:'Home'}">
                         <div class="qbm-single">
                             <img src="assets/img/home.png" alt="">
                             <p>Home</p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="#">
+                    <router-link :to="{name:'Faq'}">
                         <div class="qbm-single">
-                            <img src="assets/img/search.png" alt="">
-                            <p>Search</p>
+                            <img src="assets/img/faq.svg" alt="">
+                            <p>FAQ</p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="#">
+                    <router-link :to="{name:'Types',params:{examModel:'individual'}}">
                         <div class="qbm-single">
                             <img src="assets/img/quiz.png" alt="">
                             <p>QUIZ</p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
                 <li>
                     <router-link :to="{name:'ScoreCard'}">

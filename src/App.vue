@@ -19,3 +19,22 @@ export default defineComponent({
   }
 });
 </script>
+<style>
+.fc-icon-chevron-left:before {
+    content: "<" !important;
+}
+.fc-icon-chevron-right:before {
+    content: ">" !important;
+}
+.fc-view-harness{
+  height:  475px !important ;
+}
+body *{
+  -webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+</style>

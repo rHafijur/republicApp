@@ -94,6 +94,8 @@ export default defineComponent({
           console.log(response.data);
           localStorage.token=response.data.token;
           localStorage.types=response.data.types;
+          localStorage.phoneVerified=response.data.phoneVerified;
+          localStorage.uId=response.data.uId;
           this.$router.replace({name:'Home'});
         }
       }).catch(function (error) {

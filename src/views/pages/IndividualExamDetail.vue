@@ -16,7 +16,7 @@
         <!-- /Header Area -->
         <div class="q-menu-box">
             <p class="text-center">Exam Details</p>
-            <span @click="start" class="start-exam-btn">Start Your Exam</span>
+            <span @click="confirm" class="start-exam-btn">Start Your Exam</span>
             <div class="model-test-list">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-10 content">
@@ -97,7 +97,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonLoading } from '@ionic/vue';
+import { IonLoading, alertController } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -139,7 +139,30 @@ export default defineComponent({
         this.isLoading=false;
         console.log(error);
       })
-    }
+    },
+    async confirm() {
+      const fee=this.examInfo.fee;
+      const alert = await alertController
+        .create({
+          cssClass: 'my-custom-class',
+          header: 'Alert!',
+          message: 'By starting the exam your account might be charged by BDT '+fee+' or 1 Exam unit.',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                this.start();
+              },
+            },
+          ],
+        });
+      return alert.present();
+    },
   },
   components: { IonLoading}
 });

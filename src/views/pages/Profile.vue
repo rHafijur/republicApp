@@ -21,7 +21,7 @@
                     <div class="single-menu">
                         <router-link :to='{name:"EditProfile"}'>
                              <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/edit-profile.png" alt="">
+                                <img src="assets/img/edit.png" alt="">
                             </div> 
                             <p>Edit Profile</p>
                         </router-link>
@@ -31,7 +31,7 @@
                     <div class="single-menu">
                         <router-link :to="{name:'Categories'}"> 
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/exam-history.png" alt="">
+                                <img src="assets/img/category.png" alt="">
                             </div> 
                             <p>Categories</p>
                         </router-link>
@@ -41,7 +41,7 @@
                     <div class="single-menu">
                         <router-link :to="{name:'Balance'}">
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/balance.png" alt="">
+                                <img src="assets/img/money.png" alt="">
                             </div> 
                             <p>Balance</p>
                         </router-link>
@@ -51,7 +51,7 @@
                     <div class="single-menu">
                         <router-link :to="{name:'Packages'}"> 
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/payment-history.png" alt="">
+                                <img src="assets/img/package.svg" alt="">
                             </div> 
                             <p>Packages</p>
                         </router-link>
@@ -61,7 +61,7 @@
                     <div class="single-menu">
                         <router-link :to="{name:'ScoreCard'}">
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/scoreboard.png" alt="">
+                                <img src="assets/img/scoring.png" alt="">
                             </div> 
                             <p>Score Board</p>
                         </router-link>
@@ -69,21 +69,21 @@
                 </li>
                 <li>
                     <div class="single-menu">
-                        <a href="university.html">
+                        <router-link :to="{name:'ExamHistory'}">
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/previous-exam.png" alt="">
+                                <img src="assets/img/history.png" alt="">
                             </div> 
-                            <p>Previous Exam</p>
-                        </a>
+                            <p>Exam History</p>
+                        </router-link>
                     </div>
                 </li>
                 <li>
                     <div class="single-menu">
-                        <router-link :to="{name:'ExamHistory'}">
+                        <router-link :to="{name:'Faq'}">
                             <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/exam-history.png" alt="">
+                                <img src="assets/img/question.png" alt="">
                             </div> 
-                            <p>Exam History</p>
+                            <p>FAQ</p>
                         </router-link>
                     </div>
                 </li>
@@ -91,7 +91,7 @@
                     <div class="single-menu" >
                             <span @click="logout">
                                 <div class="menu-single-icon menu-icon-style-b">
-                                <img src="assets/img/help-support.png" alt="">
+                                <img src="assets/img/logout.png" alt="">
                                 </div> 
                                 <p>Logout</p>
                             </span>
@@ -119,7 +119,7 @@ export default defineComponent({
           return { name: 'IndividualExamDetail', params: { id: id } };
       },
       logout(){
-          localStorage.token=null;
+          localStorage.clear();
            this.$router.push({ name: 'Login' });
       }
   },

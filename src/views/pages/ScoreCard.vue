@@ -22,28 +22,41 @@
                 <div v-if="test.is_finished==0" style="height:200px;">
                     <span style="margin:0 auto;font-size:30px">Continue</span>
                 </div>
-                <ul v-else>
+                <div v-else>
+                    <div v-if="isResultPending(test)">
+                        <div v-if="isResultPending" class="q-progress-haed">
+                            <div class="result-pending">
+                                <div class="result-pending-head">Result is still pending</div>
+                                <div class="result-pending-body">Please wait a while for the result</div>
+                            </div>
+                        </div>
+                    </div>
+                   <div v-else>
+                        <ul>
                     <li>
                         <div class="prog-q-box">
-                            <h4>{{test.earned_marks}}</h4>
+                            <h4><span style="font-size: 1.2em; display:inline">{{test.earned_marks}}</span>/{{test.exam.number_of_question * test.exam.marks_per_question}}</h4>
                             <span>Marks</span>
                         </div>
                     </li>
                     <li>
                         <div class="single-pq-box">
                             <h4>{{test.number_of_correct_answers}}</h4>
-                            <p>Correct</p>
+                            <p>Correct Answer</p>
+                        </div>
+                        <div class="single-pq-box">
+                            <h4>{{test.number_of_wrong_answers}}</h4>
+                            <p>Wrong Answer</p>
                         </div>
                         <div class="single-pq-box">
                             <h4>{{test.exam.number_of_question - test.number_of_not_answered}}</h4>
-                            <p>Attempted</p>
+                            <p>Total Answer</p>
                         </div>
-                        <div class="single-pq-box">
-                            <h4>{{test.number_of_not_answered}}</h4>
-                            <p>Remining</p>
-                        </div>
+                        
                     </li> 
                 </ul>
+                   </div>
+                </div>
             </div>
         </div>  
     </div>
@@ -68,6 +81,15 @@ export default defineComponent({
               this.$router.push({name:'McqQuestionPaper',params:{id:test.encId}});
           }
           
+      },
+      isResultPending(test: any){
+          if(test.group_exam==null){
+              return false;
+          }
+          if(test.group_exam.is_result_published==0){
+              return true;
+          }
+          return false;
       }
   },
   components: {
@@ -90,5 +112,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.result-pending{
+    padding-top:45px ;
+    padding-bottom: 60px;
+    margin: auto;
 
+}
+.result-pending-head{
+    font-size:24px;
+    color: rgb(247, 62, 62);
+}
+.result-pending-body{
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+}
 </style>

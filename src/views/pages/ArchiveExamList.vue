@@ -21,7 +21,6 @@
                     <router-link :to="getLink(groupExam.id)">
                         <div class="mt-single">
                             <ul class="mt-list">
-                                <li>30%</li>
                                 <li>
                                     <p>{{groupExam.exam.title}}</p>
                                     <span>Q -{{groupExam.exam.number_of_question}} , Time -{{groupExam.exam.total_duration}} min </span>
