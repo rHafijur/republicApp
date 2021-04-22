@@ -79,7 +79,7 @@
                         <hr>
                         <div class="form-row">
                           <div class="col-md-12">
-                            <ion-button @click="confirm" v-if="!examInfo.hasEnroled" color="primary" expand="full">Enroll</ion-button>
+                            <ion-button @click="initEnroll" v-if="!examInfo.hasEnroled" color="primary" expand="full">Enroll</ion-button>
                             <ion-button @click="start" v-if="examInfo.hasEnroled && examInfo.test==null" color="primary" expand="full">Start</ion-button>
                             <ion-button @click="continueExam" v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished!=1" color="primary" expand="full">Continue</ion-button>
                             <ion-button v-if="examInfo.hasEnroled && examInfo.test_id!=null && examInfo.test.is_finished==1" disabled color="primary" expand="full">Finished</ion-button>
@@ -124,7 +124,13 @@ export default defineComponent({
     }
   },
   created(){
-      this.$http.get('group_exam/'+this.$route.params.id).then(response=>{
+      this.$http.get('group_exam/'+this.$route.params.id,
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       this.examInfo=response.data;
       console.log(this.examInfo);
       }).catch(function (error) {
@@ -169,9 +175,22 @@ export default defineComponent({
         });
       return alert.present();
     },
+    initEnroll(){
+      if(this.examInfo.chargeAlert){
+        this.confirm()
+      }else{
+        this.enroll();
+      }
+    },
     startExam(){
       this.isLoading=true;
-      this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/start').then(response=>{
+      this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/start',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
         this.isLoading=false;
         if(response.data.status!='success'){
           console.log(response.data);

@@ -166,7 +166,13 @@ export default defineComponent({
     }
   },
  created(){
-     this.$http.get('mcq_test/'+this.$route.params.id).then(response=>{
+     this.$http.get('mcq_test/'+this.$route.params.id,
+     {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       console.log(response.data);
       this.questionAnswers=response.data.questionAnswers;
       this.exam=response.data.exam;

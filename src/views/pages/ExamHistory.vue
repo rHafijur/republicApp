@@ -76,7 +76,13 @@ export default defineComponent({
   created(){
     //   console.log("Page created");
     const link='/exam_history';
-    this.$http.get(link).then(response=>{
+    this.$http.get(link,
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
         // console.log(response.data);
         this.tests=response.data;
       }).catch(function (error) {

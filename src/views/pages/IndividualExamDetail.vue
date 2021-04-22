@@ -16,7 +16,8 @@
         <!-- /Header Area -->
         <div class="q-menu-box">
             <p class="text-center">Exam Details</p>
-            <span @click="confirm" class="start-exam-btn">Start Your Exam</span>
+            <span v-if="examInfo.test_id!=null" @click="continueExam" class="start-exam-btn">Continue</span>
+            <span v-else @click="initExam" class="start-exam-btn">Start Your Exam</span>
             <div class="model-test-list">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-10 content">
@@ -113,7 +114,13 @@ export default defineComponent({
   created(){
     //   console.log(this.content);
       
-      this.$http.get('individual_exam/'+this.$route.params.id).then(response=>{
+      this.$http.get('individual_exam/'+this.$route.params.id,
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       this.examInfo=response.data;
       console.log(this.examInfo);
       
@@ -125,7 +132,13 @@ export default defineComponent({
   methods:{
     start(){
         this.isLoading=true;
-      this.$http.get('/individual_exam/'+this.examInfo.exam_id+'/start').then(response=>{
+      this.$http.get('/individual_exam/'+this.examInfo.exam_id+'/start',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
         this.isLoading=false;
         if(response.data.charge_failed==true){
           this.$router.push({name:'Packages'});
@@ -139,6 +152,9 @@ export default defineComponent({
         this.isLoading=false;
         console.log(error);
       })
+    },
+    continueExam(){
+      this.$router.replace({name:'McqQuestionPaper',params:{id:this.examInfo.test_id}});
     },
     async confirm() {
       const fee=this.examInfo.fee;
@@ -163,6 +179,13 @@ export default defineComponent({
         });
       return alert.present();
     },
+    initExam(){
+      if(this.examInfo.chargeAlert){
+        this.confirm()
+      }else{
+        this.start();
+      }
+    }
   },
   components: { IonLoading}
 });

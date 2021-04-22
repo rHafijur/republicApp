@@ -58,7 +58,13 @@ export default defineComponent({
   created(){
     //   console.log(this.content);
       
-      this.$http.get('/categories').then(response=>{
+      this.$http.get('/categories',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
           const types=[];
           for(const t of response.data.academicTypes){
               console.log(t);
@@ -76,7 +82,11 @@ export default defineComponent({
   components: {IonItem, IonSelect, IonSelectOption}
 });
 </script>
-
+<style scoped>
+.q-menu-box{
+    padding: 15px 3px !important;
+}
+</style>
 <style>
 .alert-wrapper {
     width: 80% !important;

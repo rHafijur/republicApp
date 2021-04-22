@@ -16,6 +16,8 @@
         <!-- /Header Area -->
         <div class="q-menu-box">
             <p class="text-center">Exam Details</p>
+            <span v-if="examInfo.test_id!=null" @click="continueExam" class="start-exam-btn">Continue</span>
+            <span v-else @click="initExam" class="start-exam-btn">Start Your Exam</span>
             <div class="model-test-list">
               <div class="row d-flex justify-content-center">
                 <div class="col-md-10 content">
@@ -82,7 +84,6 @@
                                     
                                 >
                                 </ion-loading>
-                            <ion-button @click="start" color="primary" expand="full">Start Exam</ion-button>
                           </div>
                             
                         </div>
@@ -96,7 +97,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton, IonLoading } from '@ionic/vue';
+import {IonLoading, alertController } from '@ionic/vue';
 
 export default defineComponent({
   name: 'GroupExamDetail',
@@ -112,7 +113,13 @@ export default defineComponent({
   created(){
     //   console.log(this.content);
       
-      this.$http.get('group_exam/'+this.$route.params.groupExamId+'/archive').then(response=>{
+      this.$http.get('group_exam/'+this.$route.params.groupExamId+'/archive',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       this.examInfo=response.data;
       console.log(this.examInfo);
       
@@ -124,7 +131,13 @@ export default defineComponent({
   methods:{
     start(){
         this.isLoading=true;
-      this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/archive/start').then(response=>{
+      this.$http.get('/group_exam/'+this.examInfo.group_exam_id+'/archive/start',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
         this.isLoading=false;
         if(response.data.charge_failed==true){
           console.log(response.data);
@@ -137,9 +150,42 @@ export default defineComponent({
         this.isLoading=false;
         console.log(error);
       })
+    },
+    continueExam(){
+      this.$router.replace({name:'McqQuestionPaper',params:{id:this.examInfo.test_id}});
+    },
+    async confirm() {
+      const fee=this.examInfo.fee;
+      const alert = await alertController
+        .create({
+          cssClass: 'my-custom-class',
+          header: 'Alert!',
+          message: 'By starting the exam your account might be charged by BDT '+fee+' or 1 Exam unit.',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                this.start();
+              },
+            },
+          ],
+        });
+      return alert.present();
+    },
+    initExam(){
+      if(this.examInfo.chargeAlert){
+        this.confirm()
+      }else{
+        this.start();
+      }
     }
   },
-  components: {IonButton, IonLoading}
+  components: {IonLoading}
 });
 </script>
 

@@ -73,7 +73,13 @@ export default defineComponent({
   created(){
     //   console.log(this.content);
       
-      this.$http.get('/balance').then(response=>{
+      this.$http.get('/balance',
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       this.exam=response.data.exam;
       this.trial=response.data.trial;
       this.credit=response.data.credit;

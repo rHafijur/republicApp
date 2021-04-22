@@ -7,6 +7,7 @@ import router from './router';
 import { IonicVue } from '@ionic/vue';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
+import { setupCache } from 'axios-cache-adapter';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -47,6 +48,10 @@ axios.interceptors.request.use(
   }
 );
 
+const cache = setupCache({
+  maxAge: 15 * 60 * 1000
+})
+
 const app = createApp(App)
 .use(IonicVue,{
   hardwareBackButton:true,
@@ -55,7 +60,7 @@ const app = createApp(App)
 .use(router)
 .use(PrimeVue)
 .use(ToastService);
-
+app.axios.defaults.adapter=cache.adapter;
 // app.config.globalProperties.$FullCalendar = FullCalendar;
 
 router.isReady().then(() => {

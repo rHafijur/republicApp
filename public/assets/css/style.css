@@ -1387,7 +1387,7 @@ ul.questions>li {
 
 .single-question .select-answer {
     position: relative;
-    padding-left: 25px;
+    padding-left: 30px;
     margin-top: 10px;
     margin-left: 0px;
 }
@@ -1420,12 +1420,12 @@ ul.questions>li {
 }
 
 .single-question .select-answer ul li input[type='radio']:after {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 15px;
     top: 0px;
     border: 2px solid black;
-    left: -1px;
+    left: -3px;
     position: relative;
     background-color: #ffffff;
     content: '';
@@ -1434,8 +1434,8 @@ ul.questions>li {
 }
 
 .single-question .select-answer ul li input[type='radio']:checked:after {
-    width: 15px;
-    height: 15px;
+    width: 19px;
+    height: 19px;
     border-radius: 15px;
     top: 0px;
     left: 0px;
@@ -1810,8 +1810,8 @@ ul.questions .select-answer ul.q-list li {
     cursor:pointer
 }
 span.start-exam-btn {
-    background-color: #6FB744;
-    border: 1px solid #6FB744;
+    background-color: #2196f3;
+    border: 1px solid #2196f3;
     border-radius: 25px;
     font-size: 18px;
     color: #fff;
@@ -1837,4 +1837,16 @@ span.start-exam-btn {
 .question * {
     font-size: 18px !important;
     font-weight: 500 !important;
+}
+.alert-checkbox-label {
+    font-size: 11px;
+}
+.q-full-width h3{
+    width: calc(100% - 60px);
+}
+ul.q-menu-list li .single-menu a {
+    background-color: #F1F1F1;
+}
+ul.q-menu-list li .single-menu span {
+    background-color: #F1F1F1;
 }

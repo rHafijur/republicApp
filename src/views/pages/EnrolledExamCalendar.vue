@@ -66,7 +66,13 @@ export default defineComponent({
   mounted(){
     const link='/enrolled/group_exams';
 
-    this.$http.get(link).then(response=>{
+    this.$http.get(link,
+      {
+        cache: {
+          maxAge: 1,
+        }
+      }
+      ).then(response=>{
       const exams=[];
       for(const groupExam of response.data){
         exams.push({

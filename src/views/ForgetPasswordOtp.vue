@@ -25,22 +25,22 @@
                 <div>
                     <ul class="fp-inputs">
                         <li>
-                            <input v-model="codes[0]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="text" placeholder="">
+                            <input v-model="codes[0]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="number" placeholder="">
                         </li>
                         <li>
-                            <input v-model="codes[1]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="text" placeholder="">
+                            <input v-model="codes[1]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="number" placeholder="">
                         </li>
                         <li>
-                            <input v-model="codes[2]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="text" placeholder="">
+                            <input v-model="codes[2]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="number" placeholder="">
                         </li>
                         <li>
-                            <input v-model="codes[3]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="text" placeholder="">
+                            <input v-model="codes[3]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="number" placeholder="">
                         </li>
                         <li>
-                            <input v-model="codes[4]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="text" placeholder="">
+                            <input v-model="codes[4]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="goToNext" type="number" placeholder="">
                         </li>
                         <li>
-                            <input v-model="codes[5]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="$event.target.blur()" type="text" placeholder="">
+                            <input v-model="codes[5]" @click="$event.preventDefault()" @focus="$event.target.select()" v-on:keyup="$event.target.blur()" type="number" placeholder="">
                         </li>
                     </ul>
                     <span v-show="seconds>0">please wait {{seconds}} seconds</span>
@@ -89,6 +89,9 @@ export default defineComponent({
   },
   methods:{
     goToNext(event: any){
+        if(event.target.value==''){
+            return;
+        }
         const el=event.target.parentElement.nextElementSibling.children[0];
         // console.log(event.target.value);
         

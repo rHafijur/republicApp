@@ -38,7 +38,7 @@
                     </div> -->
                     
                     <div class="r-form-submit">
-                        <input @click="tryRegister" type="submit" value="Submit">
+                        <input @click="tryResetPassword" type="submit" value="Submit">
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ export default defineComponent({
     // IonToolbar
   },
   methods:{
-    tryRegister(){
+    tryResetPassword(){
       if(this.user.password.length<6){
           this.isPasswordError=true;
           return;
@@ -93,6 +93,7 @@ export default defineComponent({
       }).then(response=>{
         if(response.data.status=='success'){
           localStorage.token=response.data.token;
+          localStorage.types=response.data.types;
           this.$router.replace({name:'Home'});
         }
       }).catch(function (error) {

@@ -15,7 +15,40 @@
 /* Tablet Layout: 768px. */
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-
+    *{
+        font-size: 1em !important;
+    }
+    h3{
+        font-size: 1.75rem !important;
+    }
+    .quiz-app-wrapper {
+        max-width: 100%;
+    }
+    .single-menu{
+        min-height: 200px;
+    }
+    .single-menu a{
+        min-height: 175px;
+        padding: 45px 15px;
+    }
+    .single-menu span{
+        min-height: 175px !important;
+        padding: 45px 15px;
+    }
+    .single-menu a .menu-single-icon.menu-icon-style-b {
+        width: auto;
+        height: 60px;
+    }
+    .single-menu span .menu-single-icon.menu-icon-style-b {
+        width: auto;
+        height: 60px;
+    }
+    ul.qbm-list{
+        max-width: 100%;
+    }
+    ul.qqbm-list{
+        max-width: 100%;
+    }
 }
 
 
