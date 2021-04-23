@@ -2,6 +2,7 @@
   "name": "republic-education",
   "version": "0.0.1",
   "private": true,
+  "description": "An Ionic project",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -26,6 +27,7 @@
     "core-js": "^3.6.5",
     "primeicons": "^4.1.0",
     "primevue": "^3.3.5",
+    "register-service-worker": "^1.7.1",
     "vue": "^3.0.0-0",
     "vue-axios": "^3.2.4",
     "vue-pdf": "^4.2.0",
@@ -40,6 +42,7 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "^4.5.12",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "^4.5.12",
@@ -53,6 +56,5 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "typescript": "~3.9.3",
     "vue-jest": "^5.0.0-0"
-  },
-  "description": "An Ionic project"
+  }
 }
