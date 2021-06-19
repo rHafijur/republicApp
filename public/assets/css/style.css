@@ -1366,7 +1366,7 @@ ul.questions>li {
 
 .single-question .question h4 {
     font-size: 20px;
-    display: inline;
+    display: inline-block;
     top: -5px;
     color: #000;
     font-weight: 400;
@@ -1849,4 +1849,11 @@ ul.q-menu-list li .single-menu a {
 }
 ul.q-menu-list li .single-menu span {
     background-color: #F1F1F1;
+}
+input { 
+    -webkit-user-select:text !important;
+}
+.question{
+    overflow-x: auto;
+    /* overflow-wrap: initial; */
 }

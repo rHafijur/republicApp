@@ -20,17 +20,17 @@
             <div class="login-form">
                   <div class="r-form-group">
                         <label for="">Mobile Number</label>
-                        <input type="text" class="form-control" v-model="user.phone" :class="{'is-invalid':isAuthenticationFailed}" placeholder="Enter your Mobile no" name="" id="">
+                        <input type="text" class="form-control" v-model="user.phone" :class="{'is-invalid':isAuthenticationFailed}" placeholder="Enter your Mobile no" name="">
                         <div class="invalid-feedback">
                           Wrong Phone or Password!
                         </div>
                     </div>
                     <div class="r-form-group no-mar">
                         <label for="">Password</label>
-                        <input type="password" v-model="user.password" placeholder="Enter your password" name="" id="">
+                        <input type="password" v-model="user.password" placeholder="Enter your password" name="">
                     </div>
                     <div class="r-form-check">
-                        <label for=""><input type="checkbox" name="" id=""> Remember me</label>
+                        <label for=""><input type="checkbox" name=""> Remember me</label>
                         <span><router-link :to="{name:'ForgetPassword'}">Forget Password?</router-link></span>
                     </div>
                     <div class="r-form-submit">
